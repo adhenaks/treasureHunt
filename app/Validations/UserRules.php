@@ -6,12 +6,13 @@ class UserRules{
     {
 
         $user = db_connect()->table('login')->where('uname',$data['username'])->get()->getRow();
+        // echo(var_dump($user));
         if(!$user)
         {
             $error = "Username not found!!!";
             return false;
         }
-        if($data['pass']!=$user['password'])
+        if($data['password']!=$user->pass)
         {
             $error = "Incorrect password!";
             return false;

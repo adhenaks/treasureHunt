@@ -11,11 +11,6 @@ class UserRules{
             $error = "Username not found!!!";
             return false;
         }
-        if($user->status==1)
-        {
-            $error = "User already logged in!";
-            return false;
-        }
         if(!password_verify(esc($data['password']),$user->pass))
         {
             $error = "Incorrect password!";

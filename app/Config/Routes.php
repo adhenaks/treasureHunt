@@ -31,6 +31,7 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->match(['get','post'],'/', 'Home::login');
 $routes->match(['get','post'],'admin/', 'Home::admin');
+$routes->match(['get','post'],'user/', 'Home::user');
 $routes->match(['get','post'],'admin/register', 'Home::register');
 $routes->get('logout/', 'Home::logout');
 

@@ -39,7 +39,6 @@ class Home extends BaseController
                         'isLoggedIn' => true,
                     ];
                     session()->set($udata);
-                    db_connect()->query("UPDATE `login` SET `status`=1 WHERE `uname`='" . $this->request->getVar('username') . "'");
                     if ($user->type == 'admin') {
                         return redirect()->to('admin/');
                     } else {
@@ -111,7 +110,7 @@ class Home extends BaseController
     {
         if (session()->get('isLoggedIn')) {
             if (session()->get('type') == 'admin') {
-                $users=db_connect()->query("SELECT `uname`,`p1`,`p2`,`level` FROM `login` JOIN `participants` ON `login`.`id`=`participants`.`id`")->getResultArray();
+                $users=db_connect()->query("SELECT `uname`,`p1`,`p2` FROM `login` JOIN `participants` ON `login`.`id`=`participants`.`id`")->getResultArray();
                 $data = [
                     'title' => 'Admin Panel',
                     'userDetails'=> $users,
@@ -121,9 +120,22 @@ class Home extends BaseController
         }
         return redirect()->to('/');
     }
+    public function user()
+    {
+        if (session()->get('isLoggedIn')) {
+            if (session()->get('type') == 'user') {
+                $users=db_connect()->query("SELECT `id`,`p1`,`p2`,`level` FROM `participants` WHERE `id`=(SELECT `id` FROM `login` WHERE `uname`='".session()->get('username')."')")->getRowArray();
+                $data = [
+                    'title' => 'Admin Panel',
+                    'userDetails'=> $users,
+                ];
+                return view('pages/user', $data);
+            }
+        }
+        return redirect()->to('/');
+    }
     public function logout()
     {
-        db_connect()->query("UPDATE `login` SET `status`=0 WHERE `uname`='" . session()->get('username') . "'");
         session()->destroy();
         return redirect()->to('/');
     }

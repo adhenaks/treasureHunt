@@ -182,7 +182,7 @@ class Home extends BaseController
                                 return redirect()->to('/user');
                             }
                         }
-                        return view('pages/user/round1', $data);
+                        return view('pages/user/round2', $data);
                         break;
                     default:
                         return view('pages/user/default', $data);

@@ -19,9 +19,11 @@
       </h3>
       <p><b>Task:</b>
         Find the correct spelling of the given word.
-      <ul>
-        When you click on the correct spelling a popup box will appear that contains a key. You have to enter the key below and submit.
-      </ul>
+        <br>
+        <span>
+          <b>Note</b>: When you click on the correct spelling a popup box will appear that contains a key. You have to enter the key below and submit.
+
+        </span>
       </p>
     </div>
   </div>

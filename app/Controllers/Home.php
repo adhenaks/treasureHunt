@@ -110,10 +110,13 @@ class Home extends BaseController
     {
         if (session()->get('isLoggedIn')) {
             if (session()->get('type') == 'admin') {
-                $users=db_connect()->query("SELECT `uname`,`p1`,`p2` FROM `login` JOIN `participants` ON `login`.`id`=`participants`.`id`")->getResultArray();
+                if ($this->request->getMethod() == 'post') {
+                    db_connect()->query("UPDATE `participants` SET `level`=0");
+                }
+                $users = db_connect()->query("SELECT `uname`,`p1`,`p2`,`level`,`l1`,`l2`,`l3`,`l4`,`l5` FROM `level_timings` JOIN `login` ON `level_timings`.`id`=`login`.`id` JOIN `participants` ON `login`.`id`=`participants`.`id`")->getResultArray();
                 $data = [
                     'title' => 'Admin Panel',
-                    'userDetails'=> $users,
+                    'userDetails' => $users,
                 ];
                 return view('pages/admin', $data);
             }
@@ -124,16 +127,54 @@ class Home extends BaseController
     {
         if (session()->get('isLoggedIn')) {
             if (session()->get('type') == 'user') {
-                $users=db_connect()->query("SELECT `id`,`p1`,`p2`,`level` FROM `participants` WHERE `id`=(SELECT `id` FROM `login` WHERE `uname`='".session()->get('username')."')")->getRowArray();
+                $user = db_connect()->query("SELECT `id`,`p1`,`p2`,`level` FROM `participants` WHERE `id`=(SELECT `id` FROM `login` WHERE `uname`='" . session()->get('username') . "')")->getRowArray();
                 $data = [
-                    'title' => 'Admin Panel',
-                    'userDetails'=> $users,
+                    'title' => 'Welcome',
+                    'userDetails' => $user,
                 ];
-                return view('pages/user', $data);
+                helper('form');
+                switch ($user['level']) {
+                    case '1':
+                        if ($this->request->getMethod() == 'post' && isset($_POST['key'])) {
+                            $rules = [
+                                'key' => [
+                                    'rules' => 'required|regex_match[/scavenger/]',
+                                    'label' => 'Keyword',
+                                    'errors' => [
+                                        'regex_match' => 'Wrong answer!!!'
+                                    ],
+                                ],
+                            ];
+
+                            if (!$this->validate($rules))
+                                $data['validation'] = $this->validator;
+                            else {
+                                date_default_timezone_set('Asia/Kolkata');
+                                $date = date('h:i:s');
+                                db_connect()->query("UPDATE `level_timings` SET `l1`= '$date' WHERE `id` =(SELECT `id` FROM `login` WHERE `uname`='".session()->get('username')."')");
+                                session()->setFlashData('roundPassed', true);
+                                return redirect()->to('/user');
+                            }
+                        }
+                        return view('pages/user/round1', $data);
+                        break;
+                    default:
+                        return view('pages/user/default', $data);
+                }
             }
         }
         return redirect()->to('/');
     }
+
+    public function getKey(){
+        if ($this->request->getMethod() == 'get' && isset($_GET['q'])){
+            if($_GET['q']=="017")
+            return "Key: scavenger";
+            else
+            return "Wrong Answer!!! Try again";
+        }
+    }
+
     public function logout()
     {
         session()->destroy();

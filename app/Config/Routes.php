@@ -34,6 +34,7 @@ $routes->match(['get','post'],'admin/', 'Home::admin');
 $routes->match(['get','post'],'user/', 'Home::user');
 $routes->match(['get','post'],'admin/register', 'Home::register');
 $routes->get('logout/', 'Home::logout');
+$routes->get('key/', 'Home::getKey');
 
 /*
  * --------------------------------------------------------------------

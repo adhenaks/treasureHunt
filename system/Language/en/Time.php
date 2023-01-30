@@ -28,6 +28,6 @@ return [
     'ago'            => '{0} ago',
     'inFuture'       => 'in {0}',
     'yesterday'      => 'Yesterday',
-    'tomorrow'       => 'Tomorrow',
+    'tommorow'       => 'tommorow',
     'now'            => 'Just now',
 ];

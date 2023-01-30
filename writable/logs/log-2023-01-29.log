@@ -1,0 +1,18 @@
+ERROR - 2023-01-29 00:22:05 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 1 in C:\xampp\htdocs\treasureHunt\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\treasureHunt\system\Database\MySQLi\Connection.php(295): mysqli->query('UPDATE `level_t...', 0)
+#1 C:\xampp\htdocs\treasureHunt\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `level_t...')
+#2 C:\xampp\htdocs\treasureHunt\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `level_t...')
+#3 C:\xampp\htdocs\treasureHunt\app\Controllers\Home.php(154): CodeIgniter\Database\BaseConnection->query('UPDATE `level_t...')
+#4 C:\xampp\htdocs\treasureHunt\system\CodeIgniter.php(934): App\Controllers\Home->user()
+#5 C:\xampp\htdocs\treasureHunt\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#6 C:\xampp\htdocs\treasureHunt\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\treasureHunt\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2023-01-29 00:22:05 --> You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 1
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 APPPATH\Controllers\Home.php(154): CodeIgniter\Database\BaseConnection->query('UPDATE `level_timings` SET `l1`= \'12:22:05\' WHERE `id` =(SELECT `id` FROM `login` WHERE `uname`=\'user7009766371\'))')
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->user()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()

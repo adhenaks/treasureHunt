@@ -51,7 +51,7 @@ trait TimeTrait
      *
      * @var string
      */
-    protected static $relativePattern = '/this|next|last|tomorrow|yesterday|midnight|today|[+-]|first|last|ago/i';
+    protected static $relativePattern = '/this|next|last|tommorow|yesterday|midnight|today|[+-]|first|last|ago/i';
 
     /**
      * @var DateTimeInterface|static|null
@@ -161,7 +161,7 @@ trait TimeTrait
     }
 
     /**
-     * Returns an instance set to midnight tomorrow morning.
+     * Returns an instance set to midnight tommorow morning.
      *
      * @param DateTimeZone|string|null $timezone
      *
@@ -169,7 +169,7 @@ trait TimeTrait
      *
      * @throws Exception
      */
-    public static function tomorrow($timezone = null, ?string $locale = null)
+    public static function tommorow($timezone = null, ?string $locale = null)
     {
         return new self(date('Y-m-d 00:00:00', strtotime('+1 day')), $timezone, $locale);
     }
@@ -1028,9 +1028,9 @@ trait TimeTrait
         } elseif ($days !== 0) {
             $before = $days < 0;
 
-            // Yesterday/Tomorrow special cases
+            // Yesterday/tommorow special cases
             if (abs($days) === 1) {
-                return $before ? lang('Time.yesterday') : lang('Time.tomorrow');
+                return $before ? lang('Time.yesterday') : lang('Time.tommorow');
             }
 
             $phrase = lang('Time.days', [abs($days)]);

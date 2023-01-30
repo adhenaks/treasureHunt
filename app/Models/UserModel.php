@@ -12,6 +12,7 @@ class UserModel extends Model{
         db_connect()->query("INSERT INTO `login`(`uname`,`pass`) VALUES('user".$data['data']['phone']."','$pass')");
         $user=db_connect()->table('login')->select('id')->where('uname','user'.$data['data']['phone'])->get()->getRow();
         $data['data']['id']=$user->id;
+        db_connect()->query("INSERT INTO `level_timings`(`id`) VALUES($user->id)");
         return $data;
     }
     

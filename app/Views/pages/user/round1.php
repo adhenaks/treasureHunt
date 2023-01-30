@@ -44,7 +44,7 @@
   </div>
 
 
-  <div class="row justify-content-center mt-5">
+  <div class="row justify-content-center mt-3">
     <div class="col-auto border border-dark p-3">
 
       <form action="/user" method="post" id="keyForm" onsubmit="return submitForm()">

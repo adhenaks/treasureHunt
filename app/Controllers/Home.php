@@ -152,6 +152,32 @@ class Home extends BaseController
                                 date_default_timezone_set('Asia/Kolkata');
                                 $date = date('h:i:s');
                                 db_connect()->query("UPDATE `level_timings` SET `l1`= '$date' WHERE `id` =(SELECT `id` FROM `login` WHERE `uname`='".session()->get('username')."')");
+                                db_connect()->query("UPDATE `participants` SET `level`= `level`+1 WHERE `id` =(SELECT `id` FROM `login` WHERE `uname`='".session()->get('username')."')");
+                                session()->setFlashData('roundPassed', true);
+                                return redirect()->to('/user');
+                            }
+                        }
+                        return view('pages/user/round1', $data);
+                        break;
+                    case '2':
+                        if ($this->request->getMethod() == 'post' && isset($_POST['key'])) {
+                            $rules = [
+                                'key' => [
+                                    'rules' => 'required|regex_match[/scavenger/]',
+                                    'label' => 'Keyword',
+                                    'errors' => [
+                                        'regex_match' => 'Wrong answer!!!'
+                                    ],
+                                ],
+                            ];
+
+                            if (!$this->validate($rules))
+                                $data['validation'] = $this->validator;
+                            else {
+                                date_default_timezone_set('Asia/Kolkata');
+                                $date = date('h:i:s');
+                                db_connect()->query("UPDATE `level_timings` SET `l1`= '$date' WHERE `id` =(SELECT `id` FROM `login` WHERE `uname`='".session()->get('username')."')");
+                                db_connect()->query("UPDATE `participants` SET `level`= `level`+1 WHERE `id` =(SELECT `id` FROM `login` WHERE `uname`='".session()->get('username')."')");
                                 session()->setFlashData('roundPassed', true);
                                 return redirect()->to('/user');
                             }
@@ -168,7 +194,7 @@ class Home extends BaseController
 
     public function getKey(){
         if ($this->request->getMethod() == 'get' && isset($_GET['q'])){
-            if($_GET['q']=="017")
+            if($_GET['q']=="711")
             return "Key: scavenger";
             else
             return "Wrong Answer!!! Try again";

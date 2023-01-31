@@ -2,20 +2,10 @@
 
 <?= $this->section('content') ?>
 <div class="container align-items-center mb-3">
-  <div class="row">
-    <?php if (session()->get('roundPassed')) : ?>
-      <div class="alert alert-success alert-dismissible fade show p-3" role="alert">
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        <p class="text-center">
-          Round Passed
-        </p>
-      </div>
-    <?php endif ?>
-  </div>
   <div class="row mt-3 justify-content-center">
     <div class="col-6 border border-dark">
-      <h3 class="text-center">
-        Round 1
+      <h3 class="text-center mt-2">
+        Round 1 - Spelling Bee
       </h3>
       <p><b>Task:</b>
         Find the correct spelling of the given word.

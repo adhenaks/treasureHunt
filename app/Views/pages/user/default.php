@@ -30,7 +30,8 @@
           <li>You have 30 minutes to complete the Treasure Hunt.</li>
           <li>The first and second teams to complete the treasure hunt will be declared as the winner and runners up respectively.</li>
           <li>Incase the teams aren't able to finish the Treasure Hunt in the provided time, the winner and runners up will be decided based on the rounds completed and the time taken to complete rounds.</li>
-          <li>No external gadgets are allowed.</li>
+          <li>External gadgets and articles such as pen and pencil are not allowed.</li>
+          <li>Use of developer tools or searching the web for answers is not allowed.</li>
           <li>Sharing answers or discussion with other teams is not allowed.</li>
           <li>If any member of any team fails to follow the rules, the entire team will be disqualified.</li>
         </ul>

@@ -64,4 +64,5 @@
   }
 </script>
 <script src="/assets/js/PicturePuzzle.js"></script>
+<script src="/assets/js/isSolvable.js"></script>
 <?= $this->endSection() ?>

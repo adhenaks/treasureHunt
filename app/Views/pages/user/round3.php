@@ -7,25 +7,25 @@
   <div class="row justify-content-center align-items-center mt-3">
     <div class="col-auto border border-dark rounded p-4">
       <h3 class="text-center mt-2">
-        Round 2 - Mind Games
+        Round 3 - Dino Puzzle
       </h3>
       <p><b>Task:</b>
-        Click this <a href="/assets/order.rar" target="__blank" download>link</a> and download the file.
+        Solve the given puzzle to obtain the keyword.
         <br>
-        The file is password protected.
-        <br>
-        The hint for password is given below.
-        <br>
-        Obtain the key from the file and submit below.
-        <br>
-        <span>
-          <b>Hint</b>: Solve the below riddle to obtain the password:<br>
-          A,B,C,D and E started having lunch together. B finished before A but after E.D finished before B but after C. C finished before E. What is the order in which they all finished?
-        </span>
+        Enter the keyword below and submit.
       </p>
     </div>
   </div>
 
+  <div class="row my-3">
+    <div class="col">
+      <div id="puzzle">
+      </div>
+    </div>
+    <div class="col">
+      <img src="/assets/dino.jpg" alt="none"  width="450px" height="450px">
+    </div>
+  </div>
 
   <div class="row justify-content-center align-items-center mt-3">
     <div class="col-auto border border-dark rounded p-4">
@@ -63,4 +63,5 @@
     return true;
   }
 </script>
+<script src="/assets/js/PicturePuzzle.js"></script>
 <?= $this->endSection() ?>

@@ -186,7 +186,7 @@ class Home extends BaseController
                         if ($this->request->getMethod() == 'post' && isset($_POST['key'])) {
                             $rules = [
                                 'key' => [
-                                    'rules' => 'required|regex_match[/suspicious/]',
+                                    'rules' => 'required|regex_match[/jurassic park/]',
                                     'label' => 'Keyword',
                                     'errors' => [
                                         'regex_match' => 'Wrong answer!!!'
@@ -204,8 +204,34 @@ class Home extends BaseController
                                 return redirect()->to('/user');
                             }
                         }
-                        return view('pages/user/puzzle', $data);
+                        return view('pages/user/round3', $data);
                         break;
+
+                    case '4':
+                        if ($this->request->getMethod() == 'post' && isset($_POST['key'])) {
+                            $rules = [
+                                'key' => [
+                                    'rules' => 'required|regex_match[/jurassic park/]',
+                                    'label' => 'Keyword',
+                                    'errors' => [
+                                        'regex_match' => 'Wrong answer!!!'
+                                    ],
+                                ],
+                            ];
+
+                            if (!$this->validate($rules))
+                                $data['validation'] = $this->validator;
+                            else {
+                                date_default_timezone_set('Asia/Kolkata');
+                                $date = date('h:i:s');
+                                db_connect()->query("UPDATE `level_timings` SET `l4`= '$date' WHERE `id` =(SELECT `id` FROM `login` WHERE `uname`='".session()->get('username')."')");
+                                db_connect()->query("UPDATE `participants` SET `level`= `level`+1 WHERE `id` =(SELECT `id` FROM `login` WHERE `uname`='".session()->get('username')."')");
+                                return redirect()->to('/user');
+                            }
+                        }
+                        return view('pages/user/round4', $data);
+                        break;
+                        
                     default:
                         return view('pages/user/default', $data);
                 }

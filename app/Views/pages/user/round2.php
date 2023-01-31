@@ -28,6 +28,7 @@
       </p>
 
     </div>
+  </div>
 
 
     <div class="row justify-content-center align-items-center mt-3">

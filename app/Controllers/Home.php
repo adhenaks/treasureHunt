@@ -211,7 +211,7 @@ class Home extends BaseController
                         if ($this->request->getMethod() == 'post' && isset($_POST['key'])) {
                             $rules = [
                                 'key' => [
-                                    'rules' => 'required|regex_match[/jurassic park/]',
+                                    'rules' => 'required|regex_match[/water/]',
                                     'label' => 'Keyword',
                                     'errors' => [
                                         'regex_match' => 'Wrong answer!!!'
@@ -231,7 +231,7 @@ class Home extends BaseController
                         }
                         return view('pages/user/round4', $data);
                         break;
-                        
+
                     default:
                         return view('pages/user/default', $data);
                 }

@@ -33,6 +33,8 @@
       <p><b>Task:</b>
         Solve the given crossword to obtain the keyword.
         <br>
+        The word in yellow is you keyword.
+        <br>
         Enter the keyword below and submit.
       </p>
     </div>
@@ -132,7 +134,7 @@ const id= ele.target.dataset.id;
 const row=rows[id].querySelectorAll('.value');
 for(i=0;i<row.length;i++)
 {
-  if(value[i]!=undefined)
+  if(value[i]!=undefined && value[i]!=null)
   row[i].innerText=value[i];
 }
 //console.log(id)

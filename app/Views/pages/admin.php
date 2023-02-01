@@ -10,13 +10,19 @@
         </a>
       </div>
       <?php 
-      if($userDetails[0]['level']==0): ?>
+      $flag=0;
+      foreach($userDetails as $user)
+      if($user['level']==0)
+      $flag++;
+       if($flag>0): ?>
       <div class="col-auto bg-dark rounded m-3">
         <form action="/admin" method="post" onsubmit="return confirm('Are you sure you want to start?')">
         <input class="bg-dark border-0 text-white p-3" name="submit" type="submit" value="Start Treasure Hunt">
         </form>
       </div>
-      <?php endif ?>
+      <?php 
+    endif 
+      ?>
       <div class="col-auto bg-dark p-3 rounded m-3 text-white">
         <a href="/logout" class="nav-link">
           Logout

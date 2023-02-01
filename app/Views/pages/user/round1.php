@@ -5,39 +5,32 @@
   <div class="row mt-3 justify-content-center">
     <div class="col-6 border border-dark">
       <h3 class="text-center mt-2">
-        Round 1 - Spelling Bee
+        Round 1 - Find the Word
       </h3>
       <p><b>Task:</b>
-        Find the correct spelling of the given word.
+        Go to this <a href="https://unbounce.com/landing-page-articles/what-is-a-landing-page/" target="__blank">link</a> and find the word that corresponds to the clue given below.
+        <br>
+        Submit the word below to move to the next round.
         <br>
         <span>
-          <b>Note</b>: When you click on the correct spelling a popup box will appear that contains a key. You have to enter the key below and submit.
-
+          <b>Clue</b>: Rhymes with paper, related to money, also has something that we do on a computer.
+            <br>
+            <b>Hint</b>: The required word is styled different from normal text.
         </span>
       </p>
-    </div>
-  </div>
-  <div class="row justify-content-center">
-    <div class="col-auto">
-      <div class="row justify-content-center border border-dark p-5 mt-3" style="gap:2px;">
-        <?php for ($j = 0; $j < 12; $j++) : ?>
-          <div class="col-auto p-0">
-            <div class="d-flex flex-column">
-              <?php for ($k = 0; $k < 18; $k++) : ?>
-                <div class="col-auto key" style="line-height: 13px; cursor:pointer">
-                  <img class="m-0 p-0" src="/assets/<?= $j == 7 && $k == 11 ? "tomorrow" : "tomrorow" ?>.png" width="50px" height="21px" alt="tommorrow" data-value="<?php echo $j . $k ?>">
-                </div>
-              <?php endfor ?>
-            </div>
-          </div>
-        <?php endfor ?>
-      </div>
     </div>
   </div>
 
 
   <div class="row justify-content-center mt-3">
     <div class="col-auto border border-dark p-3">
+    <?php if (isset($validation)) : ?>
+        <div class="row">
+          <div class="text-danger">
+            <?= $validation->listErrors() ?>
+          </div>
+        </div>
+      <?php endif ?>
 
       <form action="/user" method="post" id="keyForm" onsubmit="return submitForm()">
         <div class="row align-items-center">

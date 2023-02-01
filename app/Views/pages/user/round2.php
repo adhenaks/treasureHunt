@@ -2,69 +2,85 @@
 
 <?= $this->section('content') ?>
 <div class="container align-items-center mb-3">
-
-
-  <div class="row justify-content-center align-items-center mt-3">
-    <div class="col-6 border border-dark rounded p-4">
+  <div class="row mt-3 justify-content-center">
+    <div class="col-6 border border-dark">
       <h3 class="text-center mt-2">
-        Round 2 - Mind Games
+        Round 2 - Spelling Bee
       </h3>
-      <p class="mb-0"><b>Task:</b>
-        Click this <a href="/assets/order.rar" target="__blank" download>link</a> and download the file.
-        <br>
-        The file is password protected.
-        <br>
-        The hint for password is given below.
-        <br>
-        Obtain the key from the file and submit below.
+      <p><b>Task:</b>
+        Find the correct spelling of the given word.
         <br>
         <span>
-          <b>Hint</b>: Solve the below riddle to obtain the password:<br>
-          A,B,C,D and E started having lunch together. B finished before A but after E. D finished before B but after C. C finished before E. What is the order in which they all finished?
+          <b>Note</b>: When you click on the correct spelling a popup box will appear that contains a key. You have to enter the key below and submit.
+
         </span>
       </p>
-      <p style="color:#dc3545">
-        <b>Caution</b>: You are entering a world of dwarf letters!!!
-      </p>
-
     </div>
   </div>
-
-
-    <div class="row justify-content-center align-items-center mt-3">
-      <div class="col-auto border border-dark rounded p-4">
-        <?php if (isset($validation)) : ?>
-          <div class="row">
-            <div class="text-danger">
-              <?= $validation->listErrors() ?>
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <div class="row justify-content-center border border-dark p-5 mt-3" style="gap:2px;">
+        <?php for ($j = 0; $j < 12; $j++) : ?>
+          <div class="col-auto p-0">
+            <div class="d-flex flex-column">
+              <?php for ($k = 0; $k < 18; $k++) : ?>
+                <div class="col-auto key" style="line-height: 13px; cursor:pointer">
+                  <img class="m-0 p-0" src="/assets/<?= $j == 7 && $k == 11 ? "tomorrow" : "tomrorow" ?>.png" width="50px" height="21px" alt="tommorrow" data-value="<?php echo $j . $k ?>">
+                </div>
+              <?php endfor ?>
             </div>
           </div>
-        <?php endif ?>
-
-
-        <form action="/user" method="post" id="keyForm" onsubmit="return submitForm()">
-          <div class="row align-items-center">
-            <div class="col">
-              <div class="form-floating">
-                <input name="key" type="text" class="form-control" id="key" placeholder="Answer">
-                <label for="key">Keyword</label>
-              </div>
-            </div>
-            <div class="col-auto">
-              <button type="submit" class="btn btn-dark">Submit</button>
-            </div>
-          </div>
-        </form>
-
-
+        <?php endfor ?>
       </div>
     </div>
   </div>
 
-  <script>
-    function submitForm() {
-      document.getElementById('key').value = document.getElementById('key').value.toLowerCase();
-      return true;
-    }
-  </script>
-  <?= $this->endSection() ?>
+
+  <div class="row justify-content-center mt-3">
+    <div class="col-auto border border-dark p-3">
+    <?php if (isset($validation)) : ?>
+        <div class="row">
+          <div class="text-danger">
+            <?= $validation->listErrors() ?>
+          </div>
+        </div>
+      <?php endif ?>
+
+      <form action="/user" method="post" id="keyForm" onsubmit="return submitForm()">
+        <div class="row align-items-center">
+          <div class="col">
+            <div class="form-floating">
+              <input name="key" type="text" class="form-control" id="key" placeholder="Answer">
+              <label for="key">Keyword</label>
+            </div>
+          </div>
+          <div class="col-auto">
+            <button type="submit" class="btn btn-dark">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  function submitForm() {
+    document.getElementById('key').value = document.getElementById('key').value.toLowerCase();
+    return true;
+  }
+
+  document.querySelectorAll('.key').forEach((div) => {
+    div.addEventListener('click', (e) => {
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          alert(this.responseText.split('\n')[0]);
+        }
+      };
+      xmlhttp.open("GET", "/key?q=" + e.target.dataset.value, true);
+      xmlhttp.send();
+      // document.getElementById()();
+    })
+  })
+</script>
+<?= $this->endSection() ?>

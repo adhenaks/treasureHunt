@@ -111,7 +111,7 @@ class Home extends BaseController
         if (session()->get('isLoggedIn')) {
             if (session()->get('type') == 'admin') {
                 if ($this->request->getMethod() == 'post') {
-                    db_connect()->query("UPDATE `participants` SET `level`=0");
+                    db_connect()->query("UPDATE `participants` SET `level`=1 WHERE `level`=0");
                 }
                 $users = db_connect()->query("SELECT `uname`,`p1`,`p2`,`level`,`l1`,`l2`,`l3`,`l4`,`l5` FROM `level_timings` JOIN `login` ON `level_timings`.`id`=`login`.`id` JOIN `participants` ON `login`.`id`=`participants`.`id`")->getResultArray();
                 $data = [
@@ -138,7 +138,7 @@ class Home extends BaseController
                         if ($this->request->getMethod() == 'post' && isset($_POST['key'])) {
                             $rules = [
                                 'key' => [
-                                    'rules' => 'required|regex_match[/scavenger/]',
+                                    'rules' => 'required|regex_match[/pay-per-click/]',
                                     'label' => 'Keyword',
                                     'errors' => [
                                         'regex_match' => 'Wrong answer!!!'
@@ -162,7 +162,7 @@ class Home extends BaseController
                         if ($this->request->getMethod() == 'post' && isset($_POST['key'])) {
                             $rules = [
                                 'key' => [
-                                    'rules' => 'required|regex_match[/suspicious/]',
+                                    'rules' => 'required|regex_match[/scavenger/]',
                                     'label' => 'Keyword',
                                     'errors' => [
                                         'regex_match' => 'Wrong answer!!!'
@@ -186,7 +186,7 @@ class Home extends BaseController
                         if ($this->request->getMethod() == 'post' && isset($_POST['key'])) {
                             $rules = [
                                 'key' => [
-                                    'rules' => 'required|regex_match[/jurassic park/]',
+                                    'rules' => 'required|regex_match[/water/]',
                                     'label' => 'Keyword',
                                     'errors' => [
                                         'regex_match' => 'Wrong answer!!!'
@@ -211,7 +211,7 @@ class Home extends BaseController
                         if ($this->request->getMethod() == 'post' && isset($_POST['key'])) {
                             $rules = [
                                 'key' => [
-                                    'rules' => 'required|regex_match[/water/]',
+                                    'rules' => 'required|regex_match[/suspicious/]',
                                     'label' => 'Keyword',
                                     'errors' => [
                                         'regex_match' => 'Wrong answer!!!'
@@ -230,6 +230,33 @@ class Home extends BaseController
                             }
                         }
                         return view('pages/user/round4', $data);
+                        break;
+                    case '5':
+                        if ($this->request->getMethod() == 'post' && isset($_POST['key'])) {
+                            $rules = [
+                                'key' => [
+                                    'rules' => 'required|regex_match[/jurassic park/]',
+                                    'label' => 'Keyword',
+                                    'errors' => [
+                                        'regex_match' => 'Wrong answer!!!'
+                                    ],
+                                ],
+                            ];
+
+                            if (!$this->validate($rules))
+                                $data['validation'] = $this->validator;
+                            else {
+                                date_default_timezone_set('Asia/Kolkata');
+                                $date = date('h:i:s');
+                                db_connect()->query("UPDATE `level_timings` SET `l5`= '$date' WHERE `id` =(SELECT `id` FROM `login` WHERE `uname`='".session()->get('username')."')");
+                                db_connect()->query("UPDATE `participants` SET `level`= `level`+1 WHERE `id` =(SELECT `id` FROM `login` WHERE `uname`='".session()->get('username')."')");
+                                return redirect()->to('/user');
+                            }
+                        }
+                        return view('pages/user/round5', $data);
+                        break;
+                    case '6':
+                        return view('pages/user/finished', $data);
                         break;
 
                     default:

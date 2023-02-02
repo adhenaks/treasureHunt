@@ -28,10 +28,12 @@ class Home extends BaseController
                         'label' => 'Password'
                     ],
                 ];
-
+                
                 if (!$this->validate($rules))
+                {
                     $data['validation'] = $this->validator;
-                else {
+                }
+                    else {
                     $user = db_connect()->table('login')->where('uname', $this->request->getVar('username'))->get()->getRow();
                     $udata = [
                         'username' => $user->uname,
@@ -112,8 +114,11 @@ class Home extends BaseController
             if (session()->get('type') == 'admin') {
                 if ($this->request->getMethod() == 'post') {
                     db_connect()->query("UPDATE `participants` SET `level`=1 WHERE `level`=0");
+                    date_default_timezone_set('Asia/Kolkata');
+                    $date = date('H:i:s');
+                    db_connect()->query("UPDATE `level_timings` SET `start`='$date'");
                 }
-                $users = db_connect()->query("SELECT `uname`,`p1`,`p2`,`level`,`l1`,`l2`,`l3`,`l4`,`l5` FROM `level_timings` JOIN `login` ON `level_timings`.`id`=`login`.`id` JOIN `participants` ON `login`.`id`=`participants`.`id`")->getResultArray();
+                $users = db_connect()->query("SELECT `uname`,`p1`,`p2`,`level`,`l1`,`l2`,`l3`,`l4`,`l5`,`start` FROM `level_timings` JOIN `login` ON `level_timings`.`id`=`login`.`id` JOIN `participants` ON `login`.`id`=`participants`.`id`")->getResultArray();
                 $data = [
                     'title' => 'Admin Panel',
                     'userDetails' => $users,
@@ -138,10 +143,10 @@ class Home extends BaseController
                         if ($this->request->getMethod() == 'post' && isset($_POST['key'])) {
                             $rules = [
                                 'key' => [
-                                    'rules' => 'required|regex_match[/pay-per-click/]',
+                                    'rules' => 'required|in_list[pay-per-click]',
                                     'label' => 'Keyword',
                                     'errors' => [
-                                        'regex_match' => 'Wrong answer!!!'
+                                        'in_list' => 'Wrong answer!!!'
                                     ],
                                 ],
                             ];
@@ -150,9 +155,9 @@ class Home extends BaseController
                                 $data['validation'] = $this->validator;
                             else {
                                 date_default_timezone_set('Asia/Kolkata');
-                                $date = date('h:i:s');
-                                db_connect()->query("UPDATE `level_timings` SET `l1`= '$date' WHERE `id` =(SELECT `id` FROM `login` WHERE `uname`='".session()->get('username')."')");
-                                db_connect()->query("UPDATE `participants` SET `level`= `level`+1 WHERE `id` =(SELECT `id` FROM `login` WHERE `uname`='".session()->get('username')."')");
+                                $date = date('H:i:s');
+                                db_connect()->query("UPDATE `level_timings` SET `l1`= '$date' WHERE `id` =(SELECT `id` FROM `login` WHERE `uname`='" . session()->get('username') . "')");
+                                db_connect()->query("UPDATE `participants` SET `level`= `level`+1 WHERE `id` =(SELECT `id` FROM `login` WHERE `uname`='" . session()->get('username') . "')");
                                 return redirect()->to('/user');
                             }
                         }
@@ -162,10 +167,10 @@ class Home extends BaseController
                         if ($this->request->getMethod() == 'post' && isset($_POST['key'])) {
                             $rules = [
                                 'key' => [
-                                    'rules' => 'required|regex_match[/scavenger/]',
+                                    'rules' => 'required|in_list[scavenger]',
                                     'label' => 'Keyword',
                                     'errors' => [
-                                        'regex_match' => 'Wrong answer!!!'
+                                        'in_list' => 'Wrong answer!!!'
                                     ],
                                 ],
                             ];
@@ -174,9 +179,9 @@ class Home extends BaseController
                                 $data['validation'] = $this->validator;
                             else {
                                 date_default_timezone_set('Asia/Kolkata');
-                                $date = date('h:i:s');
-                                db_connect()->query("UPDATE `level_timings` SET `l2`= '$date' WHERE `id` =(SELECT `id` FROM `login` WHERE `uname`='".session()->get('username')."')");
-                                db_connect()->query("UPDATE `participants` SET `level`= `level`+1 WHERE `id` =(SELECT `id` FROM `login` WHERE `uname`='".session()->get('username')."')");
+                                $date = date('H:i:s');
+                                db_connect()->query("UPDATE `level_timings` SET `l2`= '$date' WHERE `id` =(SELECT `id` FROM `login` WHERE `uname`='" . session()->get('username') . "')");
+                                db_connect()->query("UPDATE `participants` SET `level`= `level`+1 WHERE `id` =(SELECT `id` FROM `login` WHERE `uname`='" . session()->get('username') . "')");
                                 return redirect()->to('/user');
                             }
                         }
@@ -186,10 +191,10 @@ class Home extends BaseController
                         if ($this->request->getMethod() == 'post' && isset($_POST['key'])) {
                             $rules = [
                                 'key' => [
-                                    'rules' => 'required|regex_match[/water/]',
+                                    'rules' => 'required|in_list[water]',
                                     'label' => 'Keyword',
                                     'errors' => [
-                                        'regex_match' => 'Wrong answer!!!'
+                                        'in_list' => 'Wrong answer!!!'
                                     ],
                                 ],
                             ];
@@ -198,9 +203,9 @@ class Home extends BaseController
                                 $data['validation'] = $this->validator;
                             else {
                                 date_default_timezone_set('Asia/Kolkata');
-                                $date = date('h:i:s');
-                                db_connect()->query("UPDATE `level_timings` SET `l3`= '$date' WHERE `id` =(SELECT `id` FROM `login` WHERE `uname`='".session()->get('username')."')");
-                                db_connect()->query("UPDATE `participants` SET `level`= `level`+1 WHERE `id` =(SELECT `id` FROM `login` WHERE `uname`='".session()->get('username')."')");
+                                $date = date('H:i:s');
+                                db_connect()->query("UPDATE `level_timings` SET `l3`= '$date' WHERE `id` =(SELECT `id` FROM `login` WHERE `uname`='" . session()->get('username') . "')");
+                                db_connect()->query("UPDATE `participants` SET `level`= `level`+1 WHERE `id` =(SELECT `id` FROM `login` WHERE `uname`='" . session()->get('username') . "')");
                                 return redirect()->to('/user');
                             }
                         }
@@ -211,10 +216,10 @@ class Home extends BaseController
                         if ($this->request->getMethod() == 'post' && isset($_POST['key'])) {
                             $rules = [
                                 'key' => [
-                                    'rules' => 'required|regex_match[/suspicious/]',
+                                    'rules' => 'required|in_list[suspicious]',
                                     'label' => 'Keyword',
                                     'errors' => [
-                                        'regex_match' => 'Wrong answer!!!'
+                                        'in_list' => 'Wrong answer!!!'
                                     ],
                                 ],
                             ];
@@ -223,9 +228,9 @@ class Home extends BaseController
                                 $data['validation'] = $this->validator;
                             else {
                                 date_default_timezone_set('Asia/Kolkata');
-                                $date = date('h:i:s');
-                                db_connect()->query("UPDATE `level_timings` SET `l4`= '$date' WHERE `id` =(SELECT `id` FROM `login` WHERE `uname`='".session()->get('username')."')");
-                                db_connect()->query("UPDATE `participants` SET `level`= `level`+1 WHERE `id` =(SELECT `id` FROM `login` WHERE `uname`='".session()->get('username')."')");
+                                $date = date('H:i:s');
+                                db_connect()->query("UPDATE `level_timings` SET `l4`= '$date' WHERE `id` =(SELECT `id` FROM `login` WHERE `uname`='" . session()->get('username') . "')");
+                                db_connect()->query("UPDATE `participants` SET `level`= `level`+1 WHERE `id` =(SELECT `id` FROM `login` WHERE `uname`='" . session()->get('username') . "')");
                                 return redirect()->to('/user');
                             }
                         }
@@ -235,10 +240,10 @@ class Home extends BaseController
                         if ($this->request->getMethod() == 'post' && isset($_POST['key'])) {
                             $rules = [
                                 'key' => [
-                                    'rules' => 'required|regex_match[/jurassic park/]',
+                                    'rules' => 'required|in_list[jurassic park]',
                                     'label' => 'Keyword',
                                     'errors' => [
-                                        'regex_match' => 'Wrong answer!!!'
+                                        'in_list' => 'Wrong answer!!!'
                                     ],
                                 ],
                             ];
@@ -247,15 +252,26 @@ class Home extends BaseController
                                 $data['validation'] = $this->validator;
                             else {
                                 date_default_timezone_set('Asia/Kolkata');
-                                $date = date('h:i:s');
-                                db_connect()->query("UPDATE `level_timings` SET `l5`= '$date' WHERE `id` =(SELECT `id` FROM `login` WHERE `uname`='".session()->get('username')."')");
-                                db_connect()->query("UPDATE `participants` SET `level`= `level`+1 WHERE `id` =(SELECT `id` FROM `login` WHERE `uname`='".session()->get('username')."')");
+                                $date = date('H:i:s');
+                                db_connect()->query("UPDATE `level_timings` SET `l5`= '$date' WHERE `id` =(SELECT `id` FROM `login` WHERE `uname`='" . session()->get('username') . "')");
+                                db_connect()->query("UPDATE `participants` SET `level`= `level`+1 WHERE `id` =(SELECT `id` FROM `login` WHERE `uname`='" . session()->get('username') . "')");
                                 return redirect()->to('/user');
                             }
                         }
                         return view('pages/user/round5', $data);
                         break;
                     case '6':
+
+                        $ids = db_connect()->query("SELECT `id`,`l5` FROM `level_timings` WHERE `l5` IS NOT NULL ORDER BY `l5`")->getResultArray();
+                        $userid = db_connect()->query("SELECT `id` FROM `login` WHERE `uname`='" . session()->get('username') . "'")->getRowArray();
+                        $i = 1;
+                        foreach ($ids as $id) {
+                            if ($id['id'] != $userid['id'] )
+                                $i++;
+                            else
+                                break;
+                        }
+                        $data['pos'] = $i;
                         return view('pages/user/finished', $data);
                         break;
 
@@ -267,12 +283,13 @@ class Home extends BaseController
         return redirect()->to('/');
     }
 
-    public function getKey(){
-        if ($this->request->getMethod() == 'get' && isset($_GET['q'])){
-            if($_GET['q']=="711")
-            return "Key: scavenger";
+    public function getKey()
+    {
+        if ($this->request->getMethod() == 'get' && isset($_GET['q'])) {
+            if ($_GET['q'] == "37")
+                return "Key: scavenger";
             else
-            return "Wrong Answer!!! Try again";
+                return "Wrong Answer!!! Try again";
         }
     }
 

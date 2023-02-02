@@ -50,7 +50,11 @@
           </tr>
         </thead>
         <tbody>
-          <?php foreach ($userDetails as $user) : ?>
+          
+          <?php 
+            // echo var_dump($userDetails);
+            // exit;
+          foreach ($userDetails as $user) : ?>
             <tr>
               <td>
                 <?= $i++ ?>

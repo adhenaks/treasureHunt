@@ -8,8 +8,9 @@
   <title>Treasure Hunt: <?= esc($title) ?></title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet"><style>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+  <style>
     @font-face {
       font-family: myFont;
       src: url("/assets/SwordskullPersonalUse-axqz5.ttf");
@@ -20,7 +21,7 @@
       src: url("/assets/Autumn.otf");
     }
 
-    .handwriting{
+    .handwriting {
       font-family: Itim;
     }
 
@@ -31,6 +32,7 @@
       width: fit-content;
       background: linear-gradient(to right, #763288, #36151d);
       background-clip: text;
+      -webkit-background-clip: text;
     }
 
     body {
@@ -47,7 +49,6 @@
 
     .autumn {
       font-family: Autumn;
-      font-size: 22px;
     }
 
     .animation-button {
@@ -91,6 +92,22 @@
         transform: rotateY(360deg);
       }
     }
+
+    label,
+    button,
+    input {
+      font-family: Autumn;
+      font-size: 22px;
+    }
+
+    p,
+    input {
+      font-family: Itim;
+    }
+
+    .text-danger {
+      font-size: 20px;
+    }
   </style>
 </head>
 
@@ -106,6 +123,11 @@
   <?= $this->renderSection('content') ?>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  <script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+  </script>
 </body>
 
 </html>

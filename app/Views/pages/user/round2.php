@@ -3,9 +3,9 @@
 <?= $this->section('content') ?>
 <div class="container align-items-center mb-3">
   <div class="row mt-3 justify-content-center">
-    <div class="col-6 border border-dark">
-      <h3 class="text-center mt-2">
-        Round 2 - Spelling Bee
+    <div class="col-6 border border-dark rounded bg-light bg-opacity-75">
+      <h3 class="text-center mt-2 autumn">
+        Round <span style="font-family: 'Times New Roman', Times, serif;">2</span> - Spelling Bee
       </h3>
       <p><b>Task:</b>
         Find the correct spelling of the given word.
@@ -19,13 +19,13 @@
   </div>
   <div class="row justify-content-center">
     <div class="col-auto">
-      <div class="row justify-content-center border border-dark p-5 mt-3" style="gap:2px;">
+      <div class="row justify-content-center border border-dark p-5 mt-3 rounded bg-light bg-opacity-75" style="gap:2px;">
         <?php for ($j = 0; $j < 12; $j++) : ?>
           <div class="col-auto p-0">
             <div class="d-flex flex-column">
               <?php for ($k = 0; $k < 18; $k++) : ?>
                 <div class="col-auto key" style="line-height: 13px; cursor:pointer">
-                  <img class="m-0 p-0" src="/assets/<?= $j == 7 && $k == 11 ? "tomorrow" : "tomrorow" ?>.png" width="50px" height="21px" alt="tommorrow" data-value="<?php echo $j . $k ?>">
+                  <img class="m-0 p-0" src="/assets/<?= $j == 3 && $k == 7 ? "tomorrow" : "tomrorow" ?>.png" width="50px" height="21px" alt="tommorrow" data-value="<?php echo $j . $k ?>">
                 </div>
               <?php endfor ?>
             </div>
@@ -37,7 +37,7 @@
 
 
   <div class="row justify-content-center mt-3">
-    <div class="col-auto border border-dark p-3">
+    <div class="col-auto border border-dark p-3 rounded bg-light bg-opacity-25">
     <?php if (isset($validation)) : ?>
         <div class="row">
           <div class="text-danger">
@@ -50,12 +50,12 @@
         <div class="row align-items-center">
           <div class="col">
             <div class="form-floating">
-              <input name="key" type="text" class="form-control" id="key" placeholder="Answer">
+              <input name="key" type="password" class="form-control bg-light bg-opacity-75" id="key" placeholder="Answer">
               <label for="key">Keyword</label>
             </div>
           </div>
           <div class="col-auto">
-            <button type="submit" class="btn btn-dark">Submit</button>
+            <button type="submit" class="animation-button">Submit</button>
           </div>
         </div>
       </form>

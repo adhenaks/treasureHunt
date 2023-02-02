@@ -3,10 +3,10 @@
 <?= $this->section('content') ?>
 <div class="container align-items-center mb-3">
   <div class="row mt-3 justify-content-center">
-    <div class="col-6 border border-dark">
-      <h3 class="text-center mt-2">
-        Round 1 - Find the Word
-      </h3>
+    <div class="col-6 border border-dark bg-light rounded bg-opacity-75">
+      <h2 class="text-center mt-2 autumn">
+        Round <span style="font-family: 'Times New Roman', Times, serif;">1</span> - Find the Word
+      </h2>
       <p><b>Task:</b>
         Go to this <a href="https://unbounce.com/landing-page-articles/what-is-a-landing-page/" target="__blank">link</a> and find the word that corresponds to the clue given below.
         <br>
@@ -23,10 +23,10 @@
 
 
   <div class="row justify-content-center mt-3">
-    <div class="col-auto border border-dark p-3">
+    <div class="col-auto border border-dark p-3 rounded bg-light bg-opacity-25">
     <?php if (isset($validation)) : ?>
         <div class="row">
-          <div class="text-danger">
+          <div class="text-danger handwriting">
             <?= $validation->listErrors() ?>
           </div>
         </div>
@@ -36,12 +36,12 @@
         <div class="row align-items-center">
           <div class="col">
             <div class="form-floating">
-              <input name="key" type="text" class="form-control" id="key" placeholder="Answer">
-              <label for="key">Keyword</label>
+              <input name="key" type="password" class="form-control bg-light bg-opacity-75" id="key" placeholder="Answer">
+              <label for="key" class="autumn">Keyword</label>
             </div>
           </div>
           <div class="col-auto">
-            <button type="submit" class="btn btn-dark">Submit</button>
+            <button type="submit" class=" animation-button autumn">Submit</button>
           </div>
         </div>
       </form>

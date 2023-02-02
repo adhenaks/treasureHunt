@@ -5,10 +5,10 @@
 
 
   <div class="row justify-content-center align-items-center mt-3">
-    <div class="col-6 border border-dark rounded p-4">
-      <h3 class="text-center mt-2">
-        Round 4 - Mind Games
-      </h3>
+    <div class="col-6 border border-dark rounded p-4 bg-light bg-opacity-75">
+      <h2 class="text-center mt-2 autumn">
+        Round <span style="font-family: 'Times New Roman', Times, serif;">4</span> - Mind Games
+      </h2>
       <p class="mb-0"><b>Task:</b>
         Click this <a href="/assets/order.rar" target="__blank" download>link</a> and download the compressed rar file.
         <br>
@@ -34,7 +34,7 @@
 
 
     <div class="row justify-content-center align-items-center mt-3">
-      <div class="col-auto border border-dark rounded p-4">
+      <div class="col-auto border border-dark rounded p-4 bg-light bg-opacity-25">
         <?php if (isset($validation)) : ?>
           <div class="row">
             <div class="text-danger">
@@ -48,12 +48,12 @@
           <div class="row align-items-center">
             <div class="col">
               <div class="form-floating">
-                <input name="key" type="text" class="form-control" id="key" placeholder="Answer">
+                <input name="key" type="password" class="form-control bg-light bg-opacity-75" id="key" placeholder="Answer">
                 <label for="key">Keyword</label>
               </div>
             </div>
             <div class="col-auto">
-              <button type="submit" class="btn btn-dark">Submit</button>
+              <button type="submit" class="animation-button">Submit</button>
             </div>
           </div>
         </form>

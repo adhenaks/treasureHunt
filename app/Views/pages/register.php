@@ -10,7 +10,7 @@
           </a>
         </div>
       </div>
-    <div class="col-auto border border-dark rounded p-4">
+    <div class="col-auto border border-dark rounded p-4 bg-light bg-opacity-25">
       <?php if (session()->get('regSuccess')) : ?>
         <div class="alert alert-success alert-dismissible fade show p-3" role="alert">
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -23,15 +23,15 @@
       <form action="register" method="post">
         <div class="form-floating mb-3">
           <input type="text" name="user1" class="form-control" id="p1" placeholder="name">
-          <label for="p1">Participant 1</label>
+          <label class="handwriting" for="p1">Participant 1</label>
         </div>
         <div class="form-floating mb-3">
           <input type="text" name="user2" class="form-control" id="p2" placeholder="name">
-          <label for="p2">Participant 2</label>
+          <label class="handwriting" for="p2">Participant 2</label>
         </div>
         <div class="form-floating mb-3">
           <input type="text" name="phone" class="form-control" id="phone" placeholder="name">
-          <label for="phone">Phone Number</label>
+          <label class="handwriting" for="phone">Phone Number</label>
         </div>
 
 

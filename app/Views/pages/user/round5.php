@@ -63,6 +63,6 @@
     return true;
   }
 </script>
-<script src="/assets/js/demo/PicturePuzzle.js"></script>
-<!-- <script src="/assets/js/isSolvable.js"></script> -->
+<script src="/assets/js/PicturePuzzle.js"></script>
+<script src="/assets/js/isSolvable.js"></script>
 <?= $this->endSection() ?>

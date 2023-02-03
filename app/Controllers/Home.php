@@ -78,10 +78,11 @@ class Home extends BaseController
                             'label' => 'Participant 2'
                         ],
                         'phone' => [
-                            'rules' => 'required|regex_match[/^[6-9]{1}[0-9]{9}/]',
+                            'rules' => 'required|regex_match[/^[6-9]{1}[0-9]{9}/]|is_unique[participants.phone]',
                             'label' => 'Phone Number',
                             'errors' => [
-                                'regex_match' => 'Please enter a valid phone number'
+                                'regex_match' => 'Please enter a valid phone number',
+                                'is_unique' => 'Phone number already exists in database.',
                             ],
                         ],
                     ];

@@ -33,7 +33,7 @@
       <p><b>Task:</b>
         Solve the given crossword to obtain the keyword.
         <br>
-        The word in yellow is you keyword.
+        The word in yellow is your keyword.
         <br>
         Enter the keyword below and submit.
       </p>

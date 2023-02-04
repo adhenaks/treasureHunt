@@ -108,6 +108,21 @@
     .text-danger {
       font-size: 20px;
     }
+
+    .key-eye{
+      position:absolute;
+      top:35%;
+      right:4%;
+      z-index:1;
+      width:22px;
+    }
+    .question-eye{
+      position:absolute;
+      top:19%;
+      right:6%;
+      z-index:1;
+      width:22px;
+    }
   </style>
 </head>
 
@@ -127,6 +142,30 @@
     if ( window.history.replaceState ) {
         window.history.replaceState( null, null, window.location.href );
     }
+
+    document.querySelector('.key-eye').onmousedown= (e)=>{
+  e.originalTarget.src="/assets/eye.svg";
+      document.querySelector('#key').type='text';
+
+}
+
+document.querySelector('.key-eye').onmouseup= (e)=>{
+  e.originalTarget.src="/assets/eye-slash.svg";
+  document.querySelector('#key').type='password'
+}
+
+document.querySelectorAll('.question-eye').forEach((ele)=>{
+ele.onmousedown= (e)=>{
+  e.originalTarget.src="/assets/eye.svg";
+      e.originalTarget.parentElement.querySelector('input').type='text';
+
+}
+ele.onmouseup= (e)=>{
+  e.originalTarget.src="/assets/eye-slash.svg";
+      e.originalTarget.parentElement.querySelector('input').type='password';
+
+}
+})
   </script>
 </body>
 

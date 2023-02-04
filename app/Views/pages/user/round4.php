@@ -46,7 +46,8 @@
 
         <form action="/user" method="post" id="keyForm" onsubmit="return submitForm()">
           <div class="row align-items-center">
-            <div class="col">
+          <div class="col position-relative">
+          <img src="/assets/eye-slash.svg" class="key-eye">
               <div class="form-floating">
                 <input name="key" type="password" class="form-control bg-light bg-opacity-75" id="key" placeholder="Answer">
                 <label for="key">Keyword</label>

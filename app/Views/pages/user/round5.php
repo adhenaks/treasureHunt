@@ -23,7 +23,7 @@
       </div>
     </div>
     <div class="col-auto m-0 p-0">
-      <img src="/assets/dino.jpg" alt="none"  width="450px" height="450px">
+      <img src="/assets/dino.jpg" alt="none" width="450px" height="450px">
     </div>
   </div>
 
@@ -40,9 +40,9 @@
 
       <form action="/user" method="post" id="keyForm" onsubmit="return submitForm()">
         <div class="row align-items-center">
-        <div class="col position-relative">
-          <img src="/assets/eye-slash.svg" class="key-eye">
-            <div class="form-floating">
+          <div class="col ">
+            <div class="form-floating position-relative">
+              <img src="/assets/eye-slash.svg" class="key-eye">
               <input name="key" type="password" class="form-control bg-light bg-opacity-75" id="key" placeholder="Answer">
               <label for="key">Keyword</label>
             </div>

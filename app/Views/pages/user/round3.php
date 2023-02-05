@@ -41,6 +41,9 @@
         <br>
         Enter the keyword below and submit.
       </p>
+      <p>
+        <b>Note</b>: The crossword is masked by default. Click and hold the button above it to reveal the crossword.
+      </p>
     </div>
   </div>
 <div class="row justify-content-center my-3">
@@ -184,19 +187,20 @@
     return true;
   }
 
-  const value = document.querySelectorAll('.value');
+  document.getElementById('viewCrossword').onmousedown =  ()=>{
+    flag="crossword";
+    value.forEach((ele)=>{
+      ele.style.color='black';
+    })
+  }
 
-  document.getElementById('viewCrossword').onmousedown=  ()=>{
-    value.forEach((ele)=>{
-      console.log(ele);
-      //ele.styles.color='black';
-    })
-  }
-  document.getElementById('viewCrossword').onmousedown=  ()=>{
-    value.forEach((ele)=>{
-      //ele.styles.color='transparent';
-    })
-  }
+  document.querySelectorAll('.question-eye').forEach((ele)=>{
+ele.onmousedown= (e)=>{
+  e.originalTarget.src="/assets/eye.svg";
+  e.originalTarget.parentElement.querySelector('input').type='text';
+
+}
+})
 
   const rows = document.getElementById('crossword').querySelectorAll('tr');
   document.getElementById('questions').querySelectorAll('input').forEach((ele) => {

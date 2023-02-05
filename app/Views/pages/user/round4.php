@@ -28,46 +28,60 @@
       <p style="color:#dc3545">
         <b>Caution</b>: You are entering a world of dwarf letters!!!
       </p>
-
+      <p>
+        <b>Tip</b>: To open a compressed rar file you need to right click on it and select <b>Extract Here</b>. When you are asked for a password, type in the password and click <b>OK</b>. Repeat the steps for successive .rar files.
+      </p>
     </div>
   </div>
-
-
-    <div class="row justify-content-center align-items-center mt-3">
-      <div class="col-auto border border-dark rounded p-4 bg-light bg-opacity-25">
-        <?php if (isset($validation)) : ?>
-          <div class="row">
-            <div class="text-danger">
-              <?= $validation->listErrors() ?>
-            </div>
-          </div>
-        <?php endif ?>
-
-
-        <form action="/user" method="post" id="keyForm" onsubmit="return submitForm()">
-          <div class="row align-items-center">
-          <div class="col position-relative">
-          <img src="/assets/eye-slash.svg" class="key-eye">
-              <div class="form-floating">
-                <input name="key" type="password" class="form-control bg-light bg-opacity-75" id="key" placeholder="Answer">
-                <label for="key">Keyword</label>
-              </div>
-            </div>
-            <div class="col-auto">
-              <button type="submit" class="animation-button">Submit</button>
-            </div>
-          </div>
-        </form>
-
-
+  <div class="col bg-light bg-opacity-75 border border-dark rounded mt-3">
+    <div class="row">
+      <div class="col-4">
+        <img src="/assets/rar1.png" alt="" width="100%">
+      </div>
+      <div class="col">
+        <img src="/assets/rar2.png" alt="" width="100%">
+      </div>
+      <div class="col-5">
+        <img src="/assets/rar3.png" alt="" width="100%">
       </div>
     </div>
   </div>
 
-  <script>
-    function submitForm() {
-      document.getElementById('key').value = document.getElementById('key').value.toLowerCase();
-      return true;
-    }
-  </script>
-  <?= $this->endSection() ?>
+  <div class="row justify-content-center align-items-center mt-3">
+    <div class="col-auto border border-dark rounded p-4 bg-light bg-opacity-25">
+      <?php if (isset($validation)) : ?>
+        <div class="row">
+          <div class="text-danger">
+            <?= $validation->listErrors() ?>
+          </div>
+        </div>
+      <?php endif ?>
+
+
+      <form action="/user" method="post" id="keyForm" onsubmit="return submitForm()">
+        <div class="row align-items-center">
+          <div class="col ">
+            <div class="form-floating position-relative">
+              <img src="/assets/eye-slash.svg" class="key-eye">
+              <input name="key" type="password" class="form-control bg-light bg-opacity-75" id="key" placeholder="Answer">
+              <label for="key">Keyword</label>
+            </div>
+          </div>
+          <div class="col-auto">
+            <button type="submit" class="animation-button">Submit</button>
+          </div>
+        </div>
+      </form>
+
+
+    </div>
+  </div>
+</div>
+
+<script>
+  function submitForm() {
+    document.getElementById('key').value = document.getElementById('key').value.toLowerCase();
+    return true;
+  }
+</script>
+<?= $this->endSection() ?>

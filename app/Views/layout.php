@@ -139,33 +139,32 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   <script>
+     const value = document.querySelectorAll('.value');
+     const input = document.querySelectorAll('input');
+     flag="nil";
     if ( window.history.replaceState ) {
         window.history.replaceState( null, null, window.location.href );
     }
 
     document.querySelector('.key-eye').onmousedown= (e)=>{
-  e.originalTarget.src="/assets/eye.svg";
+      e.originalTarget.src="/assets/eye.svg";
       document.querySelector('#key').type='text';
 
 }
 
-document.querySelector('.key-eye').onmouseup= (e)=>{
-  e.originalTarget.src="/assets/eye-slash.svg";
-  document.querySelector('#key').type='password'
-}
-
-document.querySelectorAll('.question-eye').forEach((ele)=>{
-ele.onmousedown= (e)=>{
-  e.originalTarget.src="/assets/eye.svg";
-      e.originalTarget.parentElement.querySelector('input').type='text';
-
-}
-ele.onmouseup= (e)=>{
-  e.originalTarget.src="/assets/eye-slash.svg";
-      e.originalTarget.parentElement.querySelector('input').type='password';
-
-}
-})
+document.body.onmouseup=  ()=>{
+    if(flag=="crossword")
+    value.forEach((ele)=>{
+      ele.style.color='transparent';
+      flag="nil";
+    })
+   else {
+  input.forEach((inp)=> {
+    inp.type='password';
+    inp.parentElement.querySelector('img').src="/assets/eye-slash.svg";
+  });
+    }
+  }
   </script>
 </body>
 

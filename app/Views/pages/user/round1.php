@@ -34,11 +34,11 @@
 
       <form action="/user" method="post" id="keyForm" onsubmit="return submitForm()">
         <div class="row align-items-center">
-          <div class="col position-relative">
-            <img src="/assets/eye-slash.svg" class="key-eye">
-            <div class="form-floating">
+        <div class="col ">
+            <div class="form-floating position-relative">
+              <img src="/assets/eye-slash.svg" class="key-eye">
               <input name="key" type="password" class="form-control bg-light bg-opacity-75" id="key" placeholder="Answer">
-              <label for="key" class="autumn">Keyword</label>
+              <label for="key">Keyword</label>
             </div>
           </div>
           <div class="col-auto">

@@ -168,7 +168,7 @@ class Home extends BaseController
                         if ($this->request->getMethod() == 'post' && isset($_POST['key'])) {
                             $rules = [
                                 'key' => [
-                                    'rules' => 'required|in_list[scavenger]',
+                                    'rules' => 'required|in_list[expelliarmus]',
                                     'label' => 'Keyword',
                                     'errors' => [
                                         'in_list' => 'Wrong answer!!!'
@@ -186,6 +186,9 @@ class Home extends BaseController
                                 return redirect()->to('/user');
                             }
                         }
+                        $data['row']=rand(0,11);
+                        $data['column']=rand(0,17);
+                        session()->set(["row"=>$data['row'],"column"=>$data['column']]);
                         return view('pages/user/round2', $data);
                         break;
                     case '3':
@@ -241,7 +244,7 @@ class Home extends BaseController
                         if ($this->request->getMethod() == 'post' && isset($_POST['key'])) {
                             $rules = [
                                 'key' => [
-                                    'rules' => 'required|in_list[jurassic park]',
+                                    'rules' => 'required|in_list[peaches]',
                                     'label' => 'Keyword',
                                     'errors' => [
                                         'in_list' => 'Wrong answer!!!'
@@ -286,9 +289,9 @@ class Home extends BaseController
 
     public function getKey()
     {
-        if ($this->request->getMethod() == 'get' && isset($_GET['q'])) {
-            if ($_GET['q'] == "37")
-                return "Key: scavenger";
+        if ($this->request->getMethod() == 'get' && isset($_GET['row']) && isset($_GET['column'])) {
+            if ($_GET['row'] == session()->get('row') && $_GET['column'] == session()->get('column') )
+                return "Key: expelliarmus";
             else
                 return "Wrong Answer!!! Try again";
         }

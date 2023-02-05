@@ -25,7 +25,7 @@
             <div class="d-flex flex-column">
               <?php for ($k = 0; $k < 18; $k++) : ?>
                 <div class="col-auto key" style="line-height: 13px; cursor:pointer">
-                  <img class="m-0 p-0" src="/assets/<?= $j == 3 && $k == 7 ? "tomorrow" : "tomrorow" ?>.png" width="50px" height="21px" alt="tommorrow" data-value="<?php echo $j . $k ?>">
+                  <img class="m-0 p-0" src="/assets/<?= $j == $row && $k == $column ? "tomorrow" : "tomrorow" ?>.png" width="50px" height="21px" alt="tommorrow" data-row="<?=$j ?>" data-column="<?=$k?>">
                 </div>
               <?php endfor ?>
             </div>
@@ -38,7 +38,7 @@
 
   <div class="row justify-content-center mt-3">
     <div class="col-auto border border-dark p-3 rounded bg-light bg-opacity-25">
-    <?php if (isset($validation)) : ?>
+      <?php if (isset($validation)) : ?>
         <div class="row">
           <div class="text-danger">
             <?= $validation->listErrors() ?>
@@ -48,9 +48,9 @@
 
       <form action="/user" method="post" id="keyForm" onsubmit="return submitForm()">
         <div class="row align-items-center">
-          <div class="col position-relative">
-          <img src="/assets/eye-slash.svg" class="key-eye">
-            <div class="form-floating">
+          <div class="col ">
+            <div class="form-floating position-relative">
+              <img src="/assets/eye-slash.svg" class="key-eye">
               <input name="key" type="password" class="form-control bg-light bg-opacity-75" id="key" placeholder="Answer">
               <label for="key">Keyword</label>
             </div>
@@ -78,7 +78,7 @@
           alert(this.responseText.split('\n')[0]);
         }
       };
-      xmlhttp.open("GET", "/key?q=" + e.target.dataset.value, true);
+      xmlhttp.open("GET", "/key?row=" + e.target.dataset.row+"&column="+e.target.dataset.column, true);
       xmlhttp.send();
       // document.getElementById()();
     })

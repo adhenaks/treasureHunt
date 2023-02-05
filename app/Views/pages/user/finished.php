@@ -1,9 +1,14 @@
 <?= $this->extend('layout') ?>
 
 <?= $this->section('content') ?>
+<link rel="stylesheet" href="/assets/css/fireworks.css">
 <div class="container mb-3" style="min-height:80vh">
-<div class="row align-items-center" style="height: 80vh;">
-<div class="col">
+<div class="pyro">
+    <div class="before"></div>
+    <div class="after"></div>
+</div>
+<div class="row align-items-center justify-content-center" style="height: 80vh;">
+<div class="col-auto p-5" >
   <h2 class="text-center autumn" style="font-size: 64px;">Treasure Hunt Completed</h2>
   <h2 class="text-center autumn" style="font-size: 48px;">Congratulations!!!</h2>
   <h2 class="text-center autumn" style="font-size: 36px;">You have finished <?php
@@ -25,5 +30,10 @@ default:
 </div>
 
 </div>
+
+<script src="/assets/js/confetti.js"></script>
+<script>
+  startConfetti();
+</script>
 
 <?= $this->endSection() ?>
